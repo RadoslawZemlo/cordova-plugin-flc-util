@@ -2,15 +2,21 @@ package pl.fulllegitcode.util;
 
 import android.app.Activity;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.concurrent.ExecutorService;
+import java.util.zip.DeflaterOutputStream;
 
 import pl.fulllegitcode.flcexoplayer.Player;
 
 public class Exo {
   public interface Callback {
     void onDispose();
+
     void onError(int error);
+
     void onImageAvailable(int width, int height);
+
     void onPlaybackState(int state);
   }
 
@@ -33,8 +39,8 @@ public class Exo {
     player = new Player(activity);
     player.prepare(uri, new String[]{}, false);
     threadPool.execute(() -> {
-      while (!disposed) {
-        try {
+      try {
+        while (!disposed) {
           activity.runOnUiThread(() -> {
             if (disposed)
               return;
@@ -48,20 +54,27 @@ public class Exo {
               playbackState = playbackStateNew;
               callback.onPlaybackState(playbackStateNew);
             }
-            if (!imageAvailable && player.isImageAvailable()) {
+            boolean imageAvailableNew = player.isImageAvailable();
+            if (imageAvailableNew && !imageAvailable) {
               imageAvailable = true;
               callback.onImageAvailable(player.getImageWidth(), player.getImageHeight());
             }
           });
-          Thread.sleep(250);
-        } catch (InterruptedException ignored) {
+          Thread.sleep(5);
         }
+      } catch (InterruptedException ignored) {
       }
     });
   }
 
-  public byte[] getFrame() {
-    return player.getImageBytes();
+  public byte[] getFrame() throws IOException {
+    imageAvailable = false;
+    byte[] data = player.getImageBytes();
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    DeflaterOutputStream dos = new DeflaterOutputStream(baos);
+    dos.write(data);
+    dos.close();
+    return baos.toByteArray();
   }
 
   public void setPlaying(boolean playing) {
