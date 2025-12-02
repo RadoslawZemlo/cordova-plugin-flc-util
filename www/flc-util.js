@@ -206,5 +206,53 @@ FlcUtil.exoSetPlaying = function(id, playing, successCallback, errorCallback) {
   )
 };
 
+FlcUtil.exoSetSpeed = function(id, speed, successCallback, errorCallback) {
+  exec(
+    function() {
+      if (successCallback)
+        successCallback();
+    },
+    function(error) {
+      if (errorCallback)
+        errorCallback(error);
+    },
+    'FlcUtil',
+    'exoSetSpeed',
+    [id, speed]
+  )
+};
+
+FlcUtil.exoSetVolume = function(id, volume, successCallback, errorCallback) {
+  exec(
+    function() {
+      if (successCallback)
+        successCallback();
+    },
+    function(error) {
+      if (errorCallback)
+        errorCallback(error);
+    },
+    'FlcUtil',
+    'exoSetVolume',
+    [id, volume]
+  )
+};
+
+FlcUtil.exoSeek = function(id, position, successCallback, errorCallback) {
+  exec(
+    function() {
+      if (successCallback)
+        successCallback();
+    },
+    function(error) {
+      if (errorCallback)
+        errorCallback(error);
+    },
+    'FlcUtil',
+    'exoSeek',
+    [id, position]
+  )
+};
+
 module.exports = FlcUtil;
 

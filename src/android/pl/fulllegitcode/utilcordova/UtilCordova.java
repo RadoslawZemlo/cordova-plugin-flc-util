@@ -26,8 +26,11 @@ public class UtilCordova extends CordovaPlugin {
   public static final String ACTION_EXO_DISPOSE = "exoDispose";
   public static final String ACTION_EXO_GET_FRAME = "exoGetFrame";
   public static final String ACTION_EXO_SET_PLAYING = "exoSetPlaying";
+  public static final String ACTION_EXO_SET_SPEED = "exoSetSpeed";
+  public static final String ACTION_EXO_SET_VOLUME = "exoSetVolume";
+  public static final String ACTION_EXO_SEEK = "exoSeek";
 
-  private final ArrayList<Exo> exos = new ArrayList<Exo>();
+  private final ArrayList<Exo> exos = new ArrayList<>();
 
   @Override
   public boolean execute(String action, CordovaArgs args, CallbackContext callbackContext) throws JSONException {
@@ -67,6 +70,19 @@ public class UtilCordova extends CordovaPlugin {
             }
 
             @Override
+            public void onDuration(long duration) {
+              try {
+                JSONObject event = new JSONObject();
+                event.put("type", "duration");
+                event.put("duration", duration);
+                PluginResult result = new PluginResult(PluginResult.Status.OK, event);
+                result.setKeepCallback(true);
+                callbackContext.sendPluginResult(result);
+              } catch (JSONException ignored) {
+              }
+            }
+
+            @Override
             public void onError(int error) {
               try {
                 JSONObject event = new JSONObject();
@@ -99,6 +115,19 @@ public class UtilCordova extends CordovaPlugin {
                 JSONObject event = new JSONObject();
                 event.put("type", "playbackState");
                 event.put("state", state);
+                PluginResult result = new PluginResult(PluginResult.Status.OK, event);
+                result.setKeepCallback(true);
+                callbackContext.sendPluginResult(result);
+              } catch (JSONException ignored) {
+              }
+            }
+
+            @Override
+            public void onPosition(long position) {
+              try {
+                JSONObject event = new JSONObject();
+                event.put("type", "position");
+                event.put("position", position);
                 PluginResult result = new PluginResult(PluginResult.Status.OK, event);
                 result.setKeepCallback(true);
                 callbackContext.sendPluginResult(result);
@@ -166,6 +195,57 @@ public class UtilCordova extends CordovaPlugin {
           if (exo != null) {
             boolean playing = args.getBoolean(1);
             exo.setPlaying(playing);
+            callbackContext.success();
+          } else {
+            callbackContext.error("exo not found");
+          }
+        } catch (Exception e) {
+          callbackContext.error(e.getMessage());
+        }
+      });
+      return true;
+    }
+    if (action.equals(ACTION_EXO_SET_SPEED)) {
+      activity.runOnUiThread(() -> {
+        try {
+          Exo exo = getExo(args.getInt(0));
+          if (exo != null) {
+            double speed = args.getDouble(1);
+            exo.setSpeed((float)speed);
+            callbackContext.success();
+          } else {
+            callbackContext.error("exo not found");
+          }
+        } catch (Exception e) {
+          callbackContext.error(e.getMessage());
+        }
+      });
+      return true;
+    }
+    if (action.equals(ACTION_EXO_SET_VOLUME)) {
+      activity.runOnUiThread(() -> {
+        try {
+          Exo exo = getExo(args.getInt(0));
+          if (exo != null) {
+            double volume = args.getDouble(1);
+            exo.setVolume((float)volume);
+            callbackContext.success();
+          } else {
+            callbackContext.error("exo not found");
+          }
+        } catch (Exception e) {
+          callbackContext.error(e.getMessage());
+        }
+      });
+      return true;
+    }
+    if (action.equals(ACTION_EXO_SEEK)) {
+      activity.runOnUiThread(() -> {
+        try {
+          Exo exo = getExo(args.getInt(0));
+          if (exo != null) {
+            long position = args.getLong(1);
+            exo.seek(position);
             callbackContext.success();
           } else {
             callbackContext.error("exo not found");

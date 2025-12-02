@@ -13,11 +13,15 @@ public class Exo {
   public interface Callback {
     void onDispose();
 
+    void onDuration(long duration);
+
     void onError(int error);
 
     void onImageAvailable(int width, int height);
 
     void onPlaybackState(int state);
+
+    void onPosition(long position);
   }
 
   private static int _nextId = 1;
@@ -25,10 +29,12 @@ public class Exo {
   private final int _id = _nextId++;
   private final Callback callback;
   private final Player player;
+  boolean durationSet = false;
   int error = -1;
-  int playbackState = 0;
-  private boolean disposed = false;
   private boolean imageAvailable = false;
+  int playbackState = 1;
+  long position = 0;
+  private boolean disposed = false;
 
   public int id() {
     return _id;
@@ -44,20 +50,32 @@ public class Exo {
           activity.runOnUiThread(() -> {
             if (disposed)
               return;
+            if (!durationSet) {
+              long duration = player.getDuration();
+              if (duration > 0) {
+                durationSet = true;
+                callback.onDuration(duration);
+              }
+            }
             int errorNew = player.getPlaybackErrorType();
             if (errorNew != error) {
               error = errorNew;
               callback.onError(errorNew);
+            }
+            boolean imageAvailableNew = player.isImageAvailable();
+            if (imageAvailableNew && !imageAvailable) {
+              imageAvailable = true;
+              callback.onImageAvailable(player.getImageWidth(), player.getImageHeight());
             }
             int playbackStateNew = player.getPlaybackState();
             if (playbackStateNew != playbackState) {
               playbackState = playbackStateNew;
               callback.onPlaybackState(playbackStateNew);
             }
-            boolean imageAvailableNew = player.isImageAvailable();
-            if (imageAvailableNew && !imageAvailable) {
-              imageAvailable = true;
-              callback.onImageAvailable(player.getImageWidth(), player.getImageHeight());
+            long positionNew = player.getCurrentPosition();
+            if (positionNew != position) {
+              position = positionNew;
+              callback.onPosition(positionNew);
             }
           });
           Thread.sleep(5);
@@ -79,6 +97,18 @@ public class Exo {
 
   public void setPlaying(boolean playing) {
     player.setPlayWhenReady(playing);
+  }
+
+  public void setSpeed(float speed) {
+    player.setSpeed(speed);
+  }
+
+  public void setVolume(float volume) {
+    player.setVolume(volume);
+  }
+
+  public void seek(long position) {
+    player.seekTo(position);
   }
 
   public void dispose() {
