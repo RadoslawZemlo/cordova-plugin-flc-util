@@ -25,6 +25,7 @@ public class UtilCordova extends CordovaPlugin {
   public static final String ACTION_EXO_CREATE = "exoCreate";
   public static final String ACTION_EXO_DISPOSE = "exoDispose";
   public static final String ACTION_EXO_GET_FRAME = "exoGetFrame";
+  public static final String ACTION_EXO_SET_KEY = "exoSetKey";
   public static final String ACTION_EXO_SET_PLAYING = "exoSetPlaying";
   public static final String ACTION_EXO_SET_SPEED = "exoSetSpeed";
   public static final String ACTION_EXO_SET_VOLUME = "exoSetVolume";
@@ -179,6 +180,23 @@ public class UtilCordova extends CordovaPlugin {
               callbackContext.success(data);
             else
               callbackContext.success(0);
+          } else {
+            callbackContext.error("exo not found");
+          }
+        } catch (Exception e) {
+          callbackContext.error(e.getMessage());
+        }
+      });
+      return true;
+    }
+    if (action.equals(ACTION_EXO_SET_KEY)) {
+      activity.runOnUiThread(() -> {
+        try {
+          Exo exo = getExo(args.getInt(0));
+          if (exo != null) {
+            String key = args.getString(1);
+            exo.setKey(key);
+            callbackContext.success();
           } else {
             callbackContext.error("exo not found");
           }

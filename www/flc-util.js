@@ -190,6 +190,22 @@ FlcUtil.exoGetFrame = function(id, successCallback, errorCallback) {
   )
 };
 
+FlcUtil.exoSetKey = function(id, key, successCallback, errorCallback) {
+  exec(
+    function() {
+      if (successCallback)
+        successCallback();
+    },
+    function(error) {
+      if (errorCallback)
+        errorCallback(error);
+    },
+    'FlcUtil',
+    'exoSetKey',
+    [id, key]
+  )
+};
+
 FlcUtil.exoSetPlaying = function(id, playing, successCallback, errorCallback) {
   exec(
     function() {

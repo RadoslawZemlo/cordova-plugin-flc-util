@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.zip.DeflaterOutputStream;
 
+import pl.fulllegitcode.flcexoplayer.AesDataSource;
 import pl.fulllegitcode.flcexoplayer.Player;
 
 public class Exo {
@@ -93,6 +94,10 @@ public class Exo {
     dos.write(data);
     dos.close();
     return baos.toByteArray();
+  }
+
+  public void setKey(String key) {
+    AesDataSource.setKey(key);
   }
 
   public void setPlaying(boolean playing) {
