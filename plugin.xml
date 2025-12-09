@@ -23,7 +23,7 @@
             </feature>
         </config-file>
 
-        <source-file src="src/android/pl/fulllegitcode/util/Exo.java" target-dir="src/pl/fulllegitcode/util" />
+<!--        <source-file src="src/android/pl/fulllegitcode/util/Exo.java" target-dir="src/pl/fulllegitcode/util" />-->
         <source-file src="src/android/pl/fulllegitcode/util/PermissionResult.java" target-dir="src/pl/fulllegitcode/util" />
         <source-file src="src/android/pl/fulllegitcode/util/RequestPermissionsCallback.java" target-dir="src/pl/fulllegitcode/util" />
         <source-file src="src/android/pl/fulllegitcode/util/RequestPermissionsDelegate.java" target-dir="src/pl/fulllegitcode/util" />
