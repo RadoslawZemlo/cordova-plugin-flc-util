@@ -31,22 +31,22 @@
         <source-file src="src/android/pl/fulllegitcode/util/Util.java" target-dir="src/pl/fulllegitcode/util" />
         <source-file src="src/android/pl/fulllegitcode/utilcordova/UtilCordova.java" target-dir="src/pl/fulllegitcode/utilcordova" />
 
-        <framework src="src/android/build-extras.gradle" custom="true" type="gradleReference" />
-        <resource-file src="src/android/libs/audio360.jar" target="libs/audio360.jar" />
-        <resource-file src="src/android/libs/audio360-exo.jar" target="libs/audio360-exo.jar" />
-        <resource-file src="src/android/libs/flcexoplayer-controller.aar" target="libs/flcexoplayer-controller.aar" />
-        <resource-file src="src/android/libs/guava-31.0.1-android.jar" target="libs/guava-31.0.1-android.jar" />
-        <resource-file src="src/android/libs/media3-common-1.0.0.aar" target="libs/media3-common-1.0.0.aar" />
-        <resource-file src="src/android/libs/media3-database-1.0.0.aar" target="libs/media3-database-1.0.0.aar" />
-        <resource-file src="src/android/libs/media3-datasource-1.0.0.aar" target="libs/media3-datasource-1.0.0.aar" />
-        <resource-file src="src/android/libs/media3-decoder-1.0.0.aar" target="libs/media3-decoder-1.0.0.aar" />
-        <resource-file src="src/android/libs/media3-exoplayer-1.0.0.aar" target="libs/media3-exoplayer-1.0.0.aar" />
-        <resource-file src="src/android/libs/media3-exoplayer-dash-1.0.0.aar" target="libs/media3-exoplayer-dash-1.0.0.aar" />
-        <resource-file src="src/android/libs/media3-exoplayer-hls-1.0.0.aar" target="libs/media3-exoplayer-hls-1.0.0.aar" />
-        <resource-file src="src/android/libs/media3-exoplayer-rtsp-1.0.0.aar" target="libs/media3-exoplayer-rtsp-1.0.0.aar" />
-        <resource-file src="src/android/libs/media3-exoplayer-smoothstreaming-1.0.0.aar" target="libs/media3-exoplayer-smoothstreaming-1.0.0.aar" />
-        <resource-file src="src/android/libs/media3-extractor-1.0.0.aar" target="libs/media3-extractor-1.0.0.aar" />
-        <resource-file src="src/android/libs/sdk-base-1.190.0.aar" target="libs/sdk-base-1.190.0.aar" />
+<!--        <framework src="src/android/build-extras.gradle" custom="true" type="gradleReference" />-->
+<!--        <resource-file src="src/android/libs/audio360.jar" target="libs/audio360.jar" />-->
+<!--        <resource-file src="src/android/libs/audio360-exo.jar" target="libs/audio360-exo.jar" />-->
+<!--        <resource-file src="src/android/libs/flcexoplayer-controller.aar" target="libs/flcexoplayer-controller.aar" />-->
+<!--        <resource-file src="src/android/libs/guava-31.0.1-android.jar" target="libs/guava-31.0.1-android.jar" />-->
+<!--        <resource-file src="src/android/libs/media3-common-1.0.0.aar" target="libs/media3-common-1.0.0.aar" />-->
+<!--        <resource-file src="src/android/libs/media3-database-1.0.0.aar" target="libs/media3-database-1.0.0.aar" />-->
+<!--        <resource-file src="src/android/libs/media3-datasource-1.0.0.aar" target="libs/media3-datasource-1.0.0.aar" />-->
+<!--        <resource-file src="src/android/libs/media3-decoder-1.0.0.aar" target="libs/media3-decoder-1.0.0.aar" />-->
+<!--        <resource-file src="src/android/libs/media3-exoplayer-1.0.0.aar" target="libs/media3-exoplayer-1.0.0.aar" />-->
+<!--        <resource-file src="src/android/libs/media3-exoplayer-dash-1.0.0.aar" target="libs/media3-exoplayer-dash-1.0.0.aar" />-->
+<!--        <resource-file src="src/android/libs/media3-exoplayer-hls-1.0.0.aar" target="libs/media3-exoplayer-hls-1.0.0.aar" />-->
+<!--        <resource-file src="src/android/libs/media3-exoplayer-rtsp-1.0.0.aar" target="libs/media3-exoplayer-rtsp-1.0.0.aar" />-->
+<!--        <resource-file src="src/android/libs/media3-exoplayer-smoothstreaming-1.0.0.aar" target="libs/media3-exoplayer-smoothstreaming-1.0.0.aar" />-->
+<!--        <resource-file src="src/android/libs/media3-extractor-1.0.0.aar" target="libs/media3-extractor-1.0.0.aar" />-->
+<!--        <resource-file src="src/android/libs/sdk-base-1.190.0.aar" target="libs/sdk-base-1.190.0.aar" />-->
     </platform>
 
     <platform name="ios">
