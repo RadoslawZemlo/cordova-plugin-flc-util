@@ -334,12 +334,12 @@ public class UtilCordova extends CordovaPlugin {
     });
   }
 
-  private Exo getExo(int id) {
+  /*private Exo getExo(int id) {
     for (int i = 0; i < exos.size(); i++) {
       Exo exo = exos.get(i);
       if (exo.id() == id)
         return exo;
     }
     return null;
-  }
+  }*/
 }
