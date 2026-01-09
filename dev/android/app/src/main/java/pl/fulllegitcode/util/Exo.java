@@ -41,8 +41,9 @@ public class Exo {
     return _id;
   }
 
-  public Exo(Activity activity, ExecutorService threadPool, String uri, Callback callback) {
+  public Exo(Activity activity, ExecutorService threadPool, String uri, String key, Callback callback) {
     this.callback = callback;
+    AesDataSource.setKey(key);
     player = new Player(activity);
     player.prepare(uri, new String[]{}, false);
     threadPool.execute(() -> {
@@ -94,10 +95,6 @@ public class Exo {
     dos.write(data);
     dos.close();
     return baos.toByteArray();
-  }
-
-  public void setKey(String key) {
-    AesDataSource.setKey(key);
   }
 
   public void setPlaying(boolean playing) {

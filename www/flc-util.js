@@ -142,7 +142,7 @@ FlcUtil.test = function(value, successCallback, errorCallback) {
   );
 };
 
-FlcUtil.exoCreate = function(uri, successCallback, errorCallback) {
+FlcUtil.exoCreate = function(uri, key, successCallback, errorCallback) {
   exec(
     function(event) {
       if (successCallback)
@@ -154,7 +154,7 @@ FlcUtil.exoCreate = function(uri, successCallback, errorCallback) {
     },
     'FlcUtil',
     'exoCreate',
-    [uri]
+    [uri, key]
   )
 };
 
@@ -187,22 +187,6 @@ FlcUtil.exoGetFrame = function(id, successCallback, errorCallback) {
     'FlcUtil',
     'exoGetFrame',
     [id]
-  )
-};
-
-FlcUtil.exoSetKey = function(id, key, successCallback, errorCallback) {
-  exec(
-    function() {
-      if (successCallback)
-        successCallback();
-    },
-    function(error) {
-      if (errorCallback)
-        errorCallback(error);
-    },
-    'FlcUtil',
-    'exoSetKey',
-    [id, key]
   )
 };
 
