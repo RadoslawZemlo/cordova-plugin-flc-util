@@ -13,7 +13,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 
-//import pl.fulllegitcode.util.Exo;
+import pl.fulllegitcode.util.Exo;
 import pl.fulllegitcode.util.Util;
 
 public class UtilCordova extends CordovaPlugin {
@@ -31,7 +31,7 @@ public class UtilCordova extends CordovaPlugin {
   public static final String ACTION_EXO_SET_VOLUME = "exoSetVolume";
   public static final String ACTION_EXO_SEEK = "exoSeek";
 
-//  private final ArrayList<Exo> exos = new ArrayList<>();
+  private final ArrayList<Exo> exos = new ArrayList<>();
 
   @Override
   public boolean execute(String action, CordovaArgs args, CallbackContext callbackContext) throws JSONException {
@@ -56,7 +56,7 @@ public class UtilCordova extends CordovaPlugin {
       callbackContext.success(Util.getIp(cordova.getActivity()));
       return true;
     }
-    /*if (action.equals(ACTION_EXO_CREATE)) {
+    if (action.equals(ACTION_EXO_CREATE)) {
       activity.runOnUiThread(() -> {
         Exo exo = null;
         try {
@@ -273,7 +273,7 @@ public class UtilCordova extends CordovaPlugin {
         }
       });
       return true;
-    }*/
+    }
     return false;
   }
 
