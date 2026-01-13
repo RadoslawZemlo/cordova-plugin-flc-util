@@ -29,6 +29,7 @@ public class UtilCordova extends CordovaPlugin {
   public static final String ACTION_EXO_SET_SPEED = "exoSetSpeed";
   public static final String ACTION_EXO_SET_VOLUME = "exoSetVolume";
   public static final String ACTION_EXO_SEEK = "exoSeek";
+  public static final String ACTION_GET_SD_PATH = "getSdPath";
 
   private final ArrayList<Exo> exos = new ArrayList<>();
 
@@ -53,6 +54,10 @@ public class UtilCordova extends CordovaPlugin {
     }
     if (action.equals(ACTION_GET_IP)) {
       callbackContext.success(Util.getIp(cordova.getActivity()));
+      return true;
+    }
+    if (action.equals(ACTION_GET_SD_PATH)) {
+      callbackContext.success(Util.getExternalFilesDirs(cordova.getActivity()));
       return true;
     }
     if (action.equals(ACTION_EXO_CREATE)) {

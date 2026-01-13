@@ -107,6 +107,23 @@ FlcUtil.getIp = function(successCallback, errorCallback) {
   );
 };
 
+FlcUtil.getSdPath = function(successCallback, errorCallback) {
+  exec(
+    function(path) {
+      if (successCallback) {
+        successCallback(path);
+      }
+    },
+    function(error) {
+      if (errorCallback) {
+        errorCallback(error);
+      }
+    },
+    'FlcUtil',
+    'getSdPath'
+  );
+};
+
 FlcUtil.getUuid = function(successCallback, errorCallback) {
   exec(
     function(uuid) {
@@ -253,6 +270,8 @@ FlcUtil.exoSeek = function(id, position, successCallback, errorCallback) {
     [id, position]
   )
 };
+
+FlcUtil.
 
 module.exports = FlcUtil;
 

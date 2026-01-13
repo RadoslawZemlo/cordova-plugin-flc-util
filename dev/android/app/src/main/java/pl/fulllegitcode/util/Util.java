@@ -145,6 +145,27 @@ public class Util {
     return result;
   }
 
+  public static String getExternalFilesDirs(Context context) {
+    File[] dirs = context.getExternalFilesDirs(null);
+    for (File dir : dirs) {
+      if (Environment.isExternalStorageRemovable(dir)) {
+        return getRootPath(dir.getAbsolutePath());
+      }
+    }
+    return null;
+  }
+
+  public static String getRootPath(String fullPath) {
+    if (fullPath == null || fullPath.isEmpty()) {
+      return null;
+    }
+    int androidIndex = fullPath.toLowerCase().indexOf("/android");
+    if (androidIndex > 0) {
+      return fullPath.substring(0, androidIndex);
+    }
+    return null;
+  }
+
   //endregion
 
   public static float getTemperature(Activity activity) {
