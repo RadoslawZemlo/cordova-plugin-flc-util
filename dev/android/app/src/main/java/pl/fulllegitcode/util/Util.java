@@ -10,10 +10,12 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.PowerManager;
 import android.util.Log;
+import android.os.Environment;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.io.File;
 
 import static android.content.Context.WIFI_SERVICE;
 
