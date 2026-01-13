@@ -271,7 +271,5 @@ FlcUtil.exoSeek = function(id, position, successCallback, errorCallback) {
   )
 };
 
-FlcUtil.
-
 module.exports = FlcUtil;
 
